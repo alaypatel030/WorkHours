@@ -23,7 +23,7 @@ public class UserProfile implements Serializable {
 			int premLevel) {
 		this.userID = userID;
 		this.password = password;
-		this.premLevel = premLevel;
+		this.setPremLevel(premLevel);
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -36,7 +36,7 @@ public class UserProfile implements Serializable {
 
 	public void setPermLevel(int newLevel) {
 		if (!(newLevel < ADMIN || newLevel > USER))
-			this.premLevel = newLevel;
+			this.setPremLevel(newLevel);
 	}
 	
 	public String getUserID(){
@@ -65,6 +65,30 @@ public class UserProfile implements Serializable {
 		this.lastName = newName;
 	}
 	
+	public int getPermLevel(){
+		return getPermLevel();
+	}
 	
+	public boolean passwordIs(String guess)
+	{
+		return password.equals(guess);
+	}
+	
+	public boolean setPassword(String newPassword, String guess){
+		boolean success = passwordIs(guess);
+		if(success)
+		{
+			password = newPassword;
+		}
+		return success;
+	}
+
+	public int getPremLevel() {
+		return premLevel;
+	}
+
+	public void setPremLevel(int premLevel) {
+		this.premLevel = premLevel;
+	}
 }
 
